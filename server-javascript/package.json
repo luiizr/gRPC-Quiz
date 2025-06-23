@@ -1,0 +1,14 @@
+{
+  "name": "quiz-server-js",
+  "version": "1.0.0",
+  "description": "gRPC Quiz Server in Node.js",
+  "main": "quiz_server.js",
+  "scripts": {
+    "start": "node quiz_server.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.9.0",
+    "@grpc/proto-loader": "^0.7.9",
+    "uuid": "^9.0.1"
+  }
+} 
