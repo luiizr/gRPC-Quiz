@@ -16,19 +16,19 @@ Este projeto é um sistema de **Quiz interativo** que utiliza o protocolo **gRPC
 ### Diagrama Resumido
 
 ```mermaid
-graph TD;
-  subgraph Cliente (Python)
+graph TD
+  subgraph Cliente_Python
     CP[quiz_client.py]
   end
-  subgraph Servidor (Node.js)
+  subgraph Servidor_Nodejs
     SN[quiz_server.js]
   end
   subgraph Proto
     P[quiz.proto]
   end
-  CP -- gRPC --> SN
-  CP -- usa --> P
-  SN -- usa --> P
+  CP -->|gRPC| SN
+  CP -->|usa| P
+  SN -->|usa| P
 ```
 
 ---
