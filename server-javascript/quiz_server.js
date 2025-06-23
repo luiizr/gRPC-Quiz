@@ -7,24 +7,49 @@ const PROTO_PATH = path.join(__dirname, '../proto/quiz.proto');
 const PORT = 50051;
 
 const questions = [
-  {
-    questionText: "Qual é a capital da França?",
-    options: ["Berlim", "Madri", "Paris", "Lisboa"],
-    correctAnswerIndex: 2,
-    explanation: "Paris é a capital e a cidade mais populosa da França."
-  },
-  {
-    questionText: "Qual linguagem de programação é conhecida por sua sintaxe limpa e legibilidade?",
-    options: ["Java", "C++", "Python", "Perl"],
-    correctAnswerIndex: 2,
-    explanation: "Python foi projetada com uma filosofia que enfatiza a legibilidade do código."
-  },
-  {
-    questionText: "O que significa a sigla 'HTTP'?",
-    options: ["HyperText Transfer Protocol", "High-Level Text Protocol", "Hyper Transfer Text Protocol", "HyperText Transmission Protocol"],
-    correctAnswerIndex: 0,
-    explanation: "HTTP (HyperText Transfer Protocol) é o protocolo usado para transferir dados pela web."
-  }
+    
+    {
+        questionText: "Qual linguagem de programação é conhecida por sua sintaxe limpa e legibilidade?",
+        options: ["Java", "C++", "Python", "Perl"],
+        correctAnswerIndex: 2,
+        explanation: "Python foi projetada com uma filosofia que enfatiza a legibilidade do código."
+    },
+     {
+        questionText: "Em bancos de dados relacionais, qual comando SQL é usado para recuperar dados?",
+        options: ["INSERT", "UPDATE", "SELECT", "DELETE"],
+        correctAnswerIndex: 2,
+        explanation: "SELECT é o comando SQL usado para consultar e recuperar dados de uma ou mais tabelas em um banco de dados relacional."
+    },
+    {
+        questionText: "O que significa a sigla 'HTTP'?",
+        options: ["HyperText Transfer Protocol", "High-Level Text Protocol", "Hyper Transfer Text Protocol", "HyperText Transmission Protocol"],
+        correctAnswerIndex: 0,
+        explanation: "HTTP (HyperText Transfer Protocol) é o protocolo usado para transferir dados pela web."
+    },
+    {
+        questionText: "O que significa a sigla 'API' em desenvolvimento de software?",
+        options: ["Advanced Programming Interface", "Application Programming Interface", "Automated Process Integration", "Application Process Interface"],
+        correctAnswerIndex: 1,
+        explanation: "API (Application Programming Interface) é um conjunto de definições e protocolos para construir e integrar software de aplicações."
+    },
+     {
+        questionText: "Em programação orientada a objetos, qual conceito permite que uma classe herde características de outra?",
+        options: ["Encapsulamento", "Polimorfismo", "Herança", "Abstração"],
+        correctAnswerIndex: 2,
+        explanation: "Herança permite que uma classe (filha) herde atributos e métodos de outra classe (pai), promovendo reutilização de código."
+    },
+     {
+        questionText: "O que é um 'commit' no contexto do Git?",
+        options: ["Uma branch nova", "Um snapshot das mudanças no código", "Um merge de branches", "Uma tag de versão"],
+        correctAnswerIndex: 1,
+        explanation: "Um commit no Git é um snapshot (foto) das mudanças feitas no código, criando um ponto na história do projeto."
+    },
+    {
+        questionText: "Em arquitetura de microsserviços, qual é a principal vantagem em relação a aplicações monolíticas?",
+        options: ["Menor complexidade", "Escalabilidade independente de serviços", "Menor uso de recursos", "Desenvolvimento mais rápido"],
+        correctAnswerIndex: 1,
+        explanation: "Microsserviços permitem escalar cada serviço independentemente conforme a demanda, diferente de monolitos que escalam como um todo."
+    }
 ];
 
 const sessions = new Map();
@@ -42,6 +67,10 @@ const quizService = {
   StartQuiz: (call, callback) => {
     const playerName = call.request.player_name;
     const sessionId = uuidv4();
+    const clientIp = call.getPeer(); // Obtém o IP do cliente
+
+    console.log(`Novo jogador conectado: Nome: ${playerName}, IP: ${clientIp}`); // Loga as informações
+
     sessions.set(sessionId, {
       playerName,
       currentQuestion: 0,
@@ -139,4 +168,4 @@ function main() {
   });
 }
 
-main(); 
+main();

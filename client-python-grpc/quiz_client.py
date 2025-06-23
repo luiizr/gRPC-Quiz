@@ -5,7 +5,7 @@ from colorama import Fore, Style, init
 
 init(autoreset=True)
 
-SERVER_ADDRESS = 'localhost:50051'
+SERVER_ADDRESS = '10.25.1.240:50051'
 
 
 def start_quiz(stub):
